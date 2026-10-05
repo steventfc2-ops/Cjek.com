@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Cjek - Taxi Online
+  </title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+   * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+html {
+    scroll-behavior:smooth;
+}
+body {
+    background:#f5f5f5;
+    color:#222;
+    line-height:1.6;
+}
+.navbar {
+    background:#111;
+    color:#fff;
+    padding:18px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+.logo {
+    font-size:28px;
+    font-weight:bold;
+}
+.navbar a {
+    color:#fff;
+    text-decoration:none;
+    margin-left:22px;
+    cursor:pointer;
+}
+.navbar a:hover {
+    color:#ffcc00;
+}
+.page {
+    display:none;
+}
+.page.active {
+    display:block;
+}
+.hero {
+    min-height:75vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url("https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+.hero-content {
+    color:#fff;
+    max-width:700px;
+    padding:30px;
+}
+.hero h1 {
+    font-size:55px;
+    margin-bottom:20px;
+}
+.hero p {
+    font-size:20px;
+    margin-bottom:30px;
+}
+.main-button,.pay-button {
+    display:inline-block;
+    padding:15px 32px;
+    background:#ffcc00;
+    color:#111;
+    text-decoration:none;
+    font-size:17px;
+    font-weight:bold;
+    border:0;
+    border-radius:10px;
+    cursor:pointer;
+}
+.main-button:hover,.pay-button:hover,.call-button:hover {
+    background:#e6b800;
+}
+.about {
+    padding:70px 10%;
+    background:#fff;
+}
+.about-content {
+    max-width:950px;
+    margin:auto;
+    text-align:center;
+}
+.about h2 {
+    font-size:36px;
+    margin-bottom:20px;
+}
+.about p {
+    font-size:17px;
+    margin-bottom:18px;
+    color:#444;
+}
+.tagline {
+    font-weight:bold;
+    font-size:20px!important;
+    margin-top:25px!important;
+    color:#111!important;
+}
+.features {
+    padding:60px 10%;
+    text-align:center;
+}
+.features h2 {
+    margin-bottom:40px;
+    font-size:32px;
+}
+.feature-container {
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+.feature-card {
+    background:#fff;
+    width:280px;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+.feature-card h3 {
+    margin-bottom:15px;
+}
+.header {
+    text-align:center;
+    padding:50px 20px 20px;
+}
+.header h1 {
+    font-size:40px;
+    margin-bottom:10px;
+}
+.location {
+    text-align:center;
+    margin:20px;
+}
+.location input {
+    width:350px;
+    max-width:90%;
+    padding:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+.taxi-container {
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding:30px 8%;
+}
+.taxi-card {
+    background:#fff;
+    width:300px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    text-align:center;
+    transition:.3s;
+}
+.taxi-card:hover {
+    transform:translateY(-8px);
+}
+.taxi-image {
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+.taxi-card h2 {
+    margin-bottom:10px;
+}
+.class {
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.price {
+    font-size:20px;
+    font-weight:bold;
+    margin:15px 0;
+}
+.call-button {
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#ffcc00;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.payment-container {
+    max-width:900px;
+    margin:45px auto;
+    padding:0 20px;
+}
+.title {
+    text-align:center;
+    margin-bottom:30px;
+}
+.title h1 {
+    font-size:38px;
+    margin-bottom:8px;
+}
+.grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+.card {
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+.card h2 {
+    margin-bottom:20px;
+}
+.summary p {
+    margin:10px 0;
+}
+.summary strong {
+    display:inline-block;
+    min-width:145px;
+}
+.total {
+    font-size:24px;
+    font-weight:bold;
+    border-top:1px solid #ddd;
+    margin-top:18px;
+    padding-top:18px;
+}
+.methods label {
+    display:block;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:14px;
+    margin:10px 0;
+    cursor:pointer;
+}
+.methods label:hover {
+    border-color:#ffcc00;
+    background:#fffdf2;
+}
+.methods input {
+    margin-right:10px;
+}
+.pay-button {
+    width:100%;
+    margin-top:18px;
+}
+.back {
+    display:inline-block;
+    margin-top:15px;
+    color:#222;
+    text-decoration:none;
+    cursor:pointer;
+}
+.success {
+    display:none;
+    text-align:center;
+}
+.success .icon {
+    font-size:60px;
+}
+.success h2 {
+    margin:10px 0;
+}
+.success p {
+    margin-bottom:20px;
+}
+.home-button {
+    display:inline-block;
+    background:#111;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:8px;
+    cursor:pointer;
+}
+footer {
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
+
+.duration-box {
+    max-width: 650px;
+    margin: 0 auto 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    text-align: center;
+}
+.duration-box label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.duration-select {
+    width: 220px;
+    max-width: 90%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.hour-note {
+    color: #666;
+    margin-top: 8px;
+    font-size: 14px;
+}
+.tracking-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.tracking-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 25px;
+}
+.map-card {
+    padding: 0;
+    overflow: hidden;
+}
+#map {
+    width: 100%;
+    height: 480px;
+    border-radius: 15px;
+}
+.map-header {
+    padding: 20px 25px 10px;
+}
+.map-header h2 { margin-bottom: 5px; }
+.map-header p { color: #666; }
+.tracking-status {
+    background: #f7f7f7;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 15px 0;
+}
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #25b864;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.countdown {
+    font-size: 34px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+.car-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+.car-control {
+    padding: 13px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.car-control:hover {
+    background: #fffdf2;
+    border-color: #ffcc00;
+}
+.feature-list {
+    margin-top: 15px;
+    display: grid;
+    gap: 9px;
+}
+.feature-list div {
+    background: #f7f7f7;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+.driver-card {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+.simulation-note {
+    font-size: 13px;
+    color: #777;
+    margin-top: 12px;
+}
+
+/* =========================
+   DESKRIPSI KENDARAAN
+   ========================= */
+.vehicle-description {
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+}
+.vehicle-description .title { margin-bottom:30px; }
+.vehicle-slider {
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.1);
+}
+.vehicle-slides {
+    display:flex;
+    transition:transform .5s ease-in-out;
+}
+.vehicle-slide { min-width:100%; padding:45px; }
+.vehicle-slide-content {
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:35px;
+    align-items:center;
+}
+.vehicle-visual {
+    background:#f5f5f5;
+    border-radius:15px;
+    min-height:260px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+    text-align:center;
+}
+.vehicle-emoji { font-size:95px; margin-bottom:15px; }
+.vehicle-visual p { color:#666; font-weight:bold; }
+.vehicle-info h2 { font-size:34px; margin-bottom:8px; }
+.vehicle-subtitle { color:#666; margin-bottom:18px; }
+.vehicle-feature-list { list-style:none; margin:0; padding:0; }
+.vehicle-feature-list li {
+    background:#f7f7f7;
+    border-radius:9px;
+    padding:11px 14px;
+    margin:9px 0;
+}
+.vehicle-feature-list li::before { content:"✓ "; font-weight:bold; }
+.vehicle-desc { margin-top:18px; color:#444; line-height:1.7; }
+.vehicle-slider-btn {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:#ffcc00;
+    color:#111;
+    font-size:28px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:3;
+}
+.vehicle-slider-btn:hover { background:#e6b800; }
+.vehicle-prev { left:15px; }
+.vehicle-next { right:15px; }
+.vehicle-dots {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:18px;
+}
+.vehicle-dot {
+    width:12px;
+    height:12px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:#ccc;
+    cursor:pointer;
+}
+.vehicle-dot.active { background:#111; }
+.vehicle-detail-button {
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    background:#111;
+    color:#fff;
+    border-radius:8px;
+    text-decoration:none;
+    cursor:pointer;
+}
+@media(max-width:700px) {
+    .vehicle-slide { padding:30px 20px; }
+    .vehicle-slide-content { grid-template-columns:1fr; gap:20px; }
+    .vehicle-info h2 { font-size:28px; }
+    .vehicle-emoji { font-size:75px; }
+}
+
+@media(max-width:900px) {
+    .tracking-grid { grid-template-columns: 1fr; }
+    #map { height: 360px; }
+}
+
+@media(max-width:700px) {
+    .navbar {
+        padding:18px 20px;
+        flex-direction:column;
+        gap:10px;
+    }
+    .navbar a {
+        margin:0 8px;
+    }
+    .hero h1 {
+        font-size:42px;
+    }
+    .hero p {
+        font-size:17px;
+    }
+    .grid {
+        grid-template-columns:1fr;
+    }
+}
+  </style>
+ </head>
+ <body>
+  <nav class="navbar">
+   <div class="logo">
+    🚕 Cjek
+   </div>
+   <div>
+    <a onclick="showPage('home')">
+     Home
+    </a>
+    <a onclick="showPage('taxi')">
+     Taxi
+    </a>
+    <a onclick="showPage('vehicles')">
+     Kendaraan
+    </a>
+    <a onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView(),50)">
+     About Us
+    </a>
+   </div>
+  </nav>
+  <section class="page active" id="home">
+   <section class="hero">
+    <div class="hero-content">
+     <h1>
+      Cjek
+     </h1>
+     <p>
+      Perjalanan nyaman, cepat, dan aman bersama layanan taxi premium Cjek.
+     </p>
+     <a class="main-button" onclick="showPage('taxi')">
+      Pesan Taxi Sekarang
+     </a>
+    </div>
+   </section>
+   <section class="about" id="about">
+    <div class="about-content">
+     <h2>
+      About Us
+     </h2>
+      <p>Our Team : Stevent Filbert, Surya, Tristan, Jeff, Lewis</p>
+     <p>
+      We are a modern online transportation service designed to make your journeys safer, smarter, and more convenient. Our service combines reliable transportation with advanced auto-drive technology to provide a smooth and comfortable travel experience.
+     </p>
+     <p>
+      We are committed to making transportation easier for everyone. With smart technology, real-time navigation, and a focus on safety, our goal is to create a future where getting from one place to another is simple, efficient, and worry-free.
+     </p>
+     
+     <p class="tagline">
+      Smart Mobility. Safer Journeys. Better Future.
+     </p>   
+     <p class="hashtag">Since 2026 </p>
+      
+    </div>
+   </section>
+   <section class="features">
+    <h2>
+     Kenapa Memilih Cjek?
+    </h2>
+    <div class="feature-container">
+     <div class="feature-card">
+      <h3>
+       🚕 Banyak Pilihan
+      </h3>
+      <p>
+       Pilih taxi sesuai kebutuhan dan kelas perjalanan Anda.
+      </p>
+     </div>
+     <div class="feature-card">
+      <h3>
+       ⚡ Cepat
+      </h3>
+      <p>
+       Pesan taxi dengan mudah hanya melalui beberapa klik.
+      </p>
+     </div>
+     <div class="feature-card">
+      <h3>
+       🛡️ Aman
+      </h3>
+      <p>
+       Nikmati perjalanan dengan layanan AutoDrive yang nyaman.
+      </p>
+     </div>
+    </div>
+   </section>
+  </section>
+  <section class="page" id="taxi">
+   <section class="header">
+    <h1>
+     Pilih Taxi Anda
+    </h1>
+    <p>
+     Pilih kelas taxi sesuai kebutuhan perjalanan Anda.
+    </p>
+    <a class="main-button" onclick="showPage('vehicles')" style="margin-top:15px;">
+     Lihat Deskripsi Kendaraan
+    </a>
+   </section>
+   <div class="location">
+    <input id="lokasi" placeholder="Masukkan lokasi penjemputan..." type="text"/>
+   </div>
+   <div class="duration-box">
+    <label for="durasi">⏱️ Mau menyewa berapa lama?</label>
+    <select class="duration-select" id="durasi">
+     <option value="1">1 jam</option>
+     <option value="2">2 jam</option>
+     <option value="4">4 jam</option>
+     <option value="8">8 jam</option>
+     <option value="12">12 jam</option>
+     <option value="24">24 jam</option>
+    </select>  
+    <p class="hour-note">Semua harga taxi di bawah adalah harga per jam. Total otomatis dihitung berdasarkan durasi.</p>
+   </div>
+   <section class="taxi-container">
+    <div class="taxi-card">
+     <img alt="AutoDrive Standard" class="taxi-image" src="Standard.jpeg"/>
+     <h2>
+      AutoDrive Standard
+     </h2>
+     <p class="class">
+      Standard Class
+     </p>
+     <p>
+      Kapasitas: 4 orang
+     </p>
+     <p class="price">
+      Rp450.000 / jam
+     </p>
+     <button class="call-button" onclick="pesanTaxi('AutoDrive Standard','Standard Class',450000)">
+      Panggil Taxi
+     </button>
+    </div>
+    <div class="taxi-card">
+     <img alt="Cjek Standard Plus" class="taxi-image" src="Standard.jpeg"/>
+     <h2>
+      Cjek Standard Plus
+     </h2>
+     <p class="class">
+      Standard Plus Class
+     </p>
+     <p>
+      Kapasitas: 4 orang
+     </p>
+     <p class="price">
+      Rp2.650.000 / jam
+     </p>
+     <button class="call-button" onclick="pesanTaxi('Cjek Standard Plus','Standard Class',2650000)">
+      Panggil Taxi
+     </button>
+    </div>
+    <div class="taxi-card">
+     <img alt="Cjek Business" class="taxi-image" src="Business.jpeg"/>
+     <h2>
+      Cjek Business
+     </h2>
+     <p class="class">
+      Business Class
+     </p>
+     <p>
+      Kapasitas: 4 orang
+     </p>
+     <p class="price">
+      Rp3.500.000 / jam
+     </p>
+     <button class="call-button" onclick="pesanTaxi('Cjek Business','Business Class',3500000)">
+      Panggil Taxi
+     </button>
+    </div>
+    <div class="taxi-card">
+     <img alt="Cjek First Class" class="taxi-image" src="First Class.jpeg"/>
+     <h2>
+      Cjek First Class
+     </h2>
+     <p class="class">
+      First Class
+     </p>
+     <p>
+      Kapasitas: 8 orang
+     </p>
+     <p class="price">
+      Rp50.000.000 / jam
+     </p>
+     <button class="call-button" onclick="pesanTaxi('Cjek First Class','First Class',50000000)">
+      Panggil Taxi
+     </button>
+    </div>
+    <div class="taxi-card">
+     <img alt="Cjek Presidential Class" class="taxi-image" src="Presidential Class.jpeg"/>
+      Cjek Presidential Class
+     </h2>
+     <p class="class">
+      Presidential Class
+     </p>
+     <p>
+      Kapasitas: 12 orang
+     </p>
+     <p class="price">
+      Rp95.000.000 / jam
+     </p>
+     <button class="call-button" onclick="pesanTaxi('Cjek First Class','First Class',95000000)">
+      Panggil Taxi
+     </button>
+    </div>
+   </section>
+  </section>
+
+   <section class="page" id="vehicles">
+    <main class="vehicle-description">
+     <div class="title">
+      <h1>Deskripsi Kendaraan</h1>
+      <p>Lihat fasilitas dan pengalaman yang tersedia di setiap kelas Cjek.</p>
+     </div>
+
+     <section class="vehicle-slider">
+      <div class="vehicle-slides" id="vehicleSlides">
+
+       <article class="vehicle-slide">
+        <div class="vehicle-slide-content">
+         <div class="vehicle-visual">
+          <div class="vehicle-emoji">🚗</div>
+          <p>AutoDrive Standard</p>
+         </div>
+         <div class="vehicle-info">
+          <h2>Standard</h2>
+          <p class="vehicle-subtitle">Perjalanan nyaman, aman, dan praktis untuk kebutuhan sehari-hari.</p>
+          <ul class="vehicle-feature-list">
+           <li>AI Auto Drive</li>
+          </ul>
+          <p class="vehicle-desc">Kelas Standard menggunakan <strong>AI Auto Drive</strong> untuk membantu memberikan perjalanan yang nyaman dan praktis.</p>
+         </div>
+        </div>
+       </article>
+
+       <article class="vehicle-slide">
+        <div class="vehicle-slide-content">
+         <div class="vehicle-visual">
+          <div class="vehicle-emoji">🚘</div>
+          <p>Cjek Standard Plus</p>
+         </div>
+         <div class="vehicle-info">
+          <h2>Standard Plus</h2>
+          <p class="vehicle-subtitle">Lebih nyaman dengan fasilitas hiburan dan relaksasi.</p>
+          <ul class="vehicle-feature-list">
+           <li>AI Auto Drive</li>
+           <li>Fasilitas pijat</li>
+           <li>Karaoke</li>
+          </ul>
+          <p class="vehicle-desc">Standard Plus menambahkan <strong>fasilitas pijat</strong> dan <strong>karaoke</strong> untuk membuat perjalanan terasa lebih santai dan menyenangkan.</p>
+         </div>
+        </div>
+       </article>
+
+       <article class="vehicle-slide">
+        <div class="vehicle-slide-content">
+         <div class="vehicle-visual">
+          <div class="vehicle-emoji">🚙</div>
+          <p>Cjek Business</p>
+         </div>
+         <div class="vehicle-info">
+          <h2>Business Class</h2>
+          <p class="vehicle-subtitle">Fasilitas premium untuk perjalanan bisnis maupun pribadi.</p>
+          <ul class="vehicle-feature-list">
+           <li>AI Auto Drive</li>
+           <li>Fasilitas pijat</li>
+           <li>Karaoke</li>
+           <li>Sofa Kasur</li>
+           <li>Digital TV</li>
+          </ul>
+          <p class="vehicle-desc">Business Class menghadirkan ruang perjalanan yang lebih nyaman dengan <strong>sofa kasur</strong> dan <strong>Digital TV</strong>, ditambah fasilitas pijat dan karaoke.</p>
+         </div>
+        </div>
+       </article>
+
+       <article class="vehicle-slide">
+        <div class="vehicle-slide-content">
+         <div class="vehicle-visual">
+          <div class="vehicle-emoji">🏎️</div>
+          <p>Cjek First Class</p>
+         </div>
+         <div class="vehicle-info">
+          <h2>First Class</h2>
+          <p class="vehicle-subtitle">Pengalaman perjalanan mewah dengan fasilitas dan keamanan tambahan.</p>
+          <ul class="vehicle-feature-list">
+           <li>AI Auto Drive</li>
+           <li>Fasilitas pijat</li>
+           <li>Karaoke</li>
+           <li>Sofa Kasur</li>
+           <li>Digital TV</li>
+           <li>Anti Peluru</li>
+           <li>Chef</li>
+          </ul>
+          <p class="vehicle-desc">First Class membawa seluruh kenyamanan Business Class dengan tambahan <strong>perlindungan anti peluru</strong> dan <strong>layanan chef</strong>.</p>
+         </div>
+        </div>
+       </article>
+
+       <article class="vehicle-slide">
+        <div class="vehicle-slide-content">
+         <div class="vehicle-visual">
+          <div class="vehicle-emoji">👑</div>
+          <p>Cjek Presidential Class</p>
+         </div>
+         <div class="vehicle-info">
+          <h2>Presidential Class</h2>
+          <p class="vehicle-subtitle">Kelas tertinggi dengan fasilitas paling lengkap dan layanan konvoi.</p>
+          <ul class="vehicle-feature-list">
+           <li>AI Auto Drive</li>
+           <li>Fasilitas pijat</li>
+           <li>Karaoke</li>
+           <li>Sofa Kasur</li>
+           <li>Digital TV</li>
+           <li>Anti Peluru</li>
+           <li>Chef</li>
+           <li>Konvoi</li>
+          </ul>
+          <p class="vehicle-desc">Presidential Class memberikan seluruh fasilitas First Class dengan tambahan <strong>layanan konvoi</strong> untuk pengalaman perjalanan yang lebih eksklusif.</p>
+         </div>
+        </div>
+       </article>
+
+      </div>
+
+      <button class="vehicle-slider-btn vehicle-prev" onclick="geserKendaraan(-1)" aria-label="Sebelumnya">‹</button>
+      <button class="vehicle-slider-btn vehicle-next" onclick="geserKendaraan(1)" aria-label="Berikutnya">›</button>
+      <div class="vehicle-dots" id="vehicleDots"></div>
+     </section>
+
+     <div style="text-align:center;">
+      <a class="vehicle-detail-button" onclick="showPage('taxi')">← Kembali ke Pilih Taxi</a>
+     </div>
+    </main>
+   </section>
+  <section class="page" id="payment">
+   <main class="payment-container">
+    <div class="title">
+     <h1>
+      Pembayaran
+     </h1>
+     <p>
+      Periksa pesanan Anda sebelum melanjutkan pembayaran.
+     </p>
+    </div>
+    <div class="grid" id="paymentArea">
+     <section class="card summary">
+      <h2>
+       Detail Pesanan
+      </h2>
+      <p>
+       <strong>
+        Taxi:
+       </strong>
+       <span id="nama">
+        -
+       </span>
+      </p>
+      <p>
+       <strong>
+        Kelas:
+       </strong>
+       <span id="kelas">
+        -
+       </span>
+      </p>
+      <p>
+       <strong>
+        Lokasi:
+       </strong>
+       <span id="lokasiPembayaran">
+        -
+       </span>
+      </p>
+      <p>
+       <strong>Durasi:</strong>
+       <span id="durasiPembayaran">-</span>
+      </p>
+      <p>
+       <strong>Harga per jam:</strong>
+       <span id="hargaPerJam">-</span>
+      </p>
+      <p class="total">
+       Total:
+       <span id="harga">
+        -
+       </span>
+      </p>
+     </section>
+     <section class="card methods">
+      <h2>
+       Metode Pembayaran
+      </h2>
+      <label>
+       <input name="payment" type="radio" value="QRIS"/>
+       QRIS
+      </label>
+      <label>
+       <input name="payment" type="radio" value="E-Wallet"/>
+       E-Wallet
+      </label>
+      <label>
+       <input name="payment" type="radio" value="Transfer Bank"/>
+       Transfer Bank
+      </label>
+      <label>
+       <input name="payment" type="radio" value="Bayar di Tempat"/>
+       Bayar di Tempat
+      </label>
+      <button class="pay-button" onclick="prosesPembayaran()">
+       Bayar Sekarang
+      </button>
+      <a class="back" onclick="showPage('taxi')">
+       ← Kembali pilih taxi
+      </a>
+     </section>
+    </div>
+    <section class="card success" id="success">
+     <div class="icon">
+      ✅
+     </div>
+     <h2>
+      Pembayaran Berhasil!
+     </h2>
+     <p>
+      Pesanan
+      <strong id="successTaxi">
+      </strong>
+      telah dibuat.
+     </p>
+     <p>
+      Metode pembayaran:
+      <strong id="successMethod">
+      </strong>
+     </p>
+     <a class="home-button" onclick="showPage('home')">
+      Kembali ke Home
+     </a>
+    </section>
+   </main>
+  </section>
+  <section class="page" id="tracking">
+   <main class="tracking-container">
+    <div class="title">
+     <h1>🚘 AutoDrive Tracking</h1>
+     <p>Pantau kendaraan menuju lokasi penjemputan dan lihat sisa waktu sewa.</p>
+    </div>
+    <div class="tracking-grid">
+     <section class="card map-card">
+      <div class="map-header">
+       <h2>📍 Lokasi Kendaraan</h2>
+       <p id="trackingText">Kendaraan sedang menuju lokasi Anda.</p>
+      </div>
+      <div id="map"></div>
+     </section>
+     <section class="card">
+      <h2>Detail Perjalanan</h2>
+      <div class="tracking-status">
+       <div><span class="status-dot"></span><strong id="carStatus">Kendaraan dalam perjalanan</strong></div>
+       <div class="countdown" id="countdown">--:--:--</div>
+       <div>Sisa waktu sewa</div>
+      </div>
+      <p><strong>Taxi:</strong> <span id="trackingTaxi">-</span></p>
+      <p><strong>Lokasi jemput:</strong> <span id="trackingLocation">-</span></p>
+      <p><strong>Durasi:</strong> <span id="trackingDuration">-</span></p>
+      <div class="driver-card">
+       <strong>🤖 AutoDrive</strong>
+       <p>Kendaraan dikendalikan dan dipantau oleh sistem AutoDrive.</p>
+      </div>
+      <h3 style="margin-top:20px;">📱 Kontrol Mobil</h3>
+      <div class="car-controls">
+       <button class="car-control" onclick="toggleDoor()" id="doorButton">🔒 Buka Pintu</button>
+       <button class="car-control" onclick="toggleAC()" id="acButton">❄️ AC Nyaman</button>
+       <button class="car-control" onclick="toggleMusic()" id="musicButton">🎵 Musik</button>
+       <button class="car-control" onclick="flashLights()">💡 Lampu</button>
+      </div>
+      <div class="feature-list">
+       <div>🧭 Navigasi otomatis</div>
+       <div>📡 Pelacakan kendaraan</div>
+       <div>🛡️ Sistem keselamatan AutoDrive</div>
+       <div>📲 Kontrol kendaraan dari HP</div>
+      </div>
+      <p class="simulation-note">Catatan: fitur kontrol dan pergerakan kendaraan pada versi ini adalah simulasi front-end. Integrasi kendaraan/GPS nyata membutuhkan perangkat kendaraan, server, dan API resmi.</p>
+      <button class="home-button" style="margin-top:15px;" onclick="showPage('home')">Kembali ke Home</button>
+     </section>
+    </div>
+   </main>
+  </section>
+  <footer>
+   <p>
+    © 2026 Cjek. All Rights Reserved.
+   </p>
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+   let order = {};
+   let map = null;
+   let carMarker = null;
+   let pickupMarker = null;
+   let countdownTimer = null;
+   let trackingTimer = null;
+   let routeProgress = 0;
+   let doorOpen = false;
+   let acOn = false;
+   let musicOn = false;
+
+function formatRupiah(value) {
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0
+    }).format(value);
+}
+
+function showPage(page) {
+     document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
+     const target = document.getElementById(page);
+     if (target) target.classList.add('active');
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+     if (page === 'tracking') {
+         setTimeout(() => {
+             initTrackingMap();
+             if (map) map.invalidateSize();
+         }, 100);
+     }
+
+     if (page === 'vehicles') {
+         setTimeout(() => {
+             updateVehicleSlider();
+             restartVehicleAutoSlide();
+         }, 50);
+     }
+ }
+function pesanTaxi(nama, kelas, hargaPerJam) {
+    const lokasi = document.getElementById('lokasi').value.trim();
+    const durasi = Number(document.getElementById('durasi').value);
+
+    if (!lokasi) {
+        alert('Silakan masukkan lokasi penjemputan terlebih dahulu.');
+        document.getElementById('lokasi').focus();
+        return;
+    }
+
+    const total = hargaPerJam * durasi;
+
+    order = {
+        nama,
+        kelas,
+        hargaPerJam,
+        durasi,
+        total,
+        lokasi
+    };
+
+    document.getElementById('nama').textContent = nama;
+    document.getElementById('kelas').textContent = kelas;
+    document.getElementById('lokasiPembayaran').textContent = lokasi;
+    document.getElementById('durasiPembayaran').textContent = `${durasi} jam`;
+    document.getElementById('hargaPerJam').textContent = `${formatRupiah(hargaPerJam)} / jam`;
+    document.getElementById('harga').textContent = formatRupiah(total);
+
+    document.getElementById('paymentArea').style.display = 'grid';
+    document.getElementById('success').style.display = 'none';
+    document.querySelectorAll('input[name="payment"]').forEach((radio) => radio.checked = false);
+    showPage('payment');
+}
+
+function prosesPembayaran() {
+    const selected = document.querySelector('input[name="payment"]:checked');
+
+    if (!selected) {
+        alert('Silakan pilih metode pembayaran terlebih dahulu.');
+        return;
+    }
+
+    document.getElementById('paymentArea').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('successTaxi').textContent = order.nama || 'Taxi Cjek';
+    document.getElementById('successMethod').textContent = selected.value;
+
+    // Setelah pembayaran, buka halaman tracking.
+    setTimeout(() => {
+        startRental();
+    }, 1200);
+}
+
+function startRental() {
+    document.getElementById('trackingTaxi').textContent = order.nama;
+    document.getElementById('trackingLocation').textContent = order.lokasi;
+    document.getElementById('trackingDuration').textContent = `${order.durasi} jam`;
+    startCountdown(order.durasi * 60 * 60);
+    showPage('tracking');
+}
+
+function startCountdown(totalSeconds) {
+    clearInterval(countdownTimer);
+    let remaining = totalSeconds;
+
+    function update() {
+        const h = Math.floor(remaining / 3600);
+        const m = Math.floor((remaining % 3600) / 60);
+        const s = remaining % 60;
+        document.getElementById('countdown').textContent =
+            `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
+        if (remaining <= 0) {
+            clearInterval(countdownTimer);
+            document.getElementById('carStatus').textContent = 'Masa sewa selesai';
+            document.getElementById('trackingText').textContent = 'Waktu sewa kendaraan telah berakhir.';
+            return;
+        }
+        remaining--;
+    }
+
+    update();
+    countdownTimer = setInterval(update, 1000);
+}
+
+function initTrackingMap() {
+    if (typeof L === 'undefined') {
+        document.getElementById('trackingText').textContent = 'Peta membutuhkan koneksi internet untuk memuat OpenStreetMap.';
+        return;
+    }
+
+    if (!map) {
+        map = L.map('map').setView([3.5952, 98.6722], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+    }
+
+    // Coba gunakan lokasi perangkat sebagai titik jemput. Jika ditolak, gunakan lokasi demo.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => setupRoute(position.coords.latitude, position.coords.longitude),
+            () => setupRoute(3.5952, 98.6722),
+            { enableHighAccuracy: true, timeout: 8000 }
+        );
+    } else {
+        setupRoute(3.5952, 98.6722);
+    }
+}
+
+function setupRoute(lat, lng) {
+    const pickup = [lat, lng];
+    const start = [lat + 0.035, lng + 0.035];
+
+    if (pickupMarker) pickupMarker.remove();
+    if (carMarker) carMarker.remove();
+
+    pickupMarker = L.marker(pickup).addTo(map).bindPopup('<b>📍 Lokasi Penjemputan</b><br>Lokasi Anda').openPopup();
+    carMarker = L.marker(start, {
+        icon: L.divIcon({ className: 'car-marker', html: '🚘', iconSize: [32, 32], iconAnchor: [16, 16] })
+    }).addTo(map).bindPopup('<b>🚘 AutoDrive</b><br>Kendaraan sedang menuju Anda.');
+
+    map.fitBounds([pickup, start], { padding: [40, 40] });
+    routeProgress = 0;
+    clearInterval(trackingTimer);
+    trackingTimer = setInterval(() => moveCar(start, pickup), 1500);
+}
+
+function moveCar(start, pickup) {
+    routeProgress = Math.min(routeProgress + 0.025, 1);
+    const lat = start[0] + (pickup[0] - start[0]) * routeProgress;
+    const lng = start[1] + (pickup[1] - start[1]) * routeProgress;
+    carMarker.setLatLng([lat, lng]);
+
+    const distance = Math.max(0, Math.round((1 - routeProgress) * 4.2 * 10) / 10);
+    if (routeProgress >= 1) {
+        clearInterval(trackingTimer);
+        document.getElementById('carStatus').textContent = 'Kendaraan sudah sampai';
+        document.getElementById('trackingText').textContent = '🚘 Kendaraan sudah tiba di lokasi penjemputan.';
+        carMarker.bindPopup('<b>🚘 AutoDrive sudah sampai!</b>').openPopup();
+    } else {
+        document.getElementById('carStatus').textContent = 'Kendaraan dalam perjalanan';
+        document.getElementById('trackingText').textContent = `Kendaraan sedang menuju Anda • sekitar ${distance} km lagi (simulasi)`;
+    }
+}
+
+let vehicleSlideIndex = 0;
+let vehicleAutoSlideTimer = null;
+
+function initVehicleSlider() {
+    const slideContainer = document.getElementById('vehicleSlides');
+    const dotsContainer = document.getElementById('vehicleDots');
+
+    if (!slideContainer || !dotsContainer) return;
+
+    const total = slideContainer.querySelectorAll('.vehicle-slide').length;
+    dotsContainer.innerHTML = '';
+
+    for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'vehicle-dot';
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Slide ${i + 1}`);
+        dot.addEventListener('click', () => {
+            vehicleSlideIndex = i;
+            updateVehicleSlider();
+            restartVehicleAutoSlide();
+        });
+        dotsContainer.appendChild(dot);
+    }
+
+    updateVehicleSlider();
+    restartVehicleAutoSlide();
+}
+
+function updateVehicleSlider() {
+    const slideContainer = document.getElementById('vehicleSlides');
+    const dots = document.querySelectorAll('.vehicle-dot');
+
+    if (!slideContainer) return;
+
+    slideContainer.style.transform = `translateX(-${vehicleSlideIndex * 100}%)`;
+
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === vehicleSlideIndex);
+    });
+}
+
+function geserKendaraan(direction) {
+    const slideContainer = document.getElementById('vehicleSlides');
+    if (!slideContainer) return;
+
+    const total = slideContainer.querySelectorAll('.vehicle-slide').length;
+
+    vehicleSlideIndex += direction;
+
+    if (vehicleSlideIndex >= total) vehicleSlideIndex = 0;
+    if (vehicleSlideIndex < 0) vehicleSlideIndex = total - 1;
+
+    updateVehicleSlider();
+    restartVehicleAutoSlide();
+}
+
+function restartVehicleAutoSlide() {
+    clearInterval(vehicleAutoSlideTimer);
+
+    vehicleAutoSlideTimer = setInterval(() => {
+        if (document.getElementById('vehicles')?.classList.contains('active')) {
+            geserKendaraan(1);
+        }
+    }, 5000);
+}
+
+function toggleDoor() {
+    doorOpen = !doorOpen;
+    const button = document.getElementById('doorButton');
+    button.textContent = doorOpen ? '🔓 Tutup Pintu' : '🔒 Buka Pintu';
+    alert(doorOpen ? 'Simulasi: pintu mobil berhasil dibuka dari HP.' : 'Simulasi: pintu mobil dikunci kembali.');
+}
+
+function toggleAC() {
+    acOn = !acOn;
+    document.getElementById('acButton').textContent = acOn ? '❄️ AC Aktif' : '❄️ AC Nyaman';
+}
+
+function toggleMusic() {
+    musicOn = !musicOn;
+    document.getElementById('musicButton').textContent = musicOn ? '🔊 Musik Aktif' : '🎵 Musik';
+}
+
+function flashLights() {
+    alert('Simulasi: lampu kendaraan berkedip untuk membantu Anda menemukan mobil.');
+}
+
+  
+initVehicleSlider();
+</script>
+ </body>
+</html>
