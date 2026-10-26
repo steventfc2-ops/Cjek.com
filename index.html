@@ -414,6 +414,21 @@ footer {
 }
 
 /* =========================
+   REGISTRASI PENGGUNA
+   ========================= */
+.page.registration-page{display:none;min-height:100vh;align-items:center;justify-content:center;padding:40px 20px;background:#fff !important;}
+.page.registration-page.active{display:flex;}
+.registration-card{width:100%;max-width:560px;background:#fff;border:1px solid #e8e8e8;border-radius:22px;padding:35px;box-shadow:0 12px 35px rgba(0,0,0,.10)}
+.registration-brand{text-align:center;margin-bottom:25px}.registration-brand .brand-icon{font-size:48px}.registration-brand h1{font-size:34px;margin:5px 0}.registration-brand p{color:#666}
+.registration-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}.form-group{display:flex;flex-direction:column;gap:7px}.form-group.full{grid-column:1/-1}.form-group label{font-weight:bold;font-size:14px}
+.form-group input,.form-group select{width:100%;padding:13px 14px;border:1px solid #d5d5d5;border-radius:10px;font-size:15px;outline:none;background:#fff}.form-group input:focus,.form-group select:focus{border-color:#ffcc00;box-shadow:0 0 0 3px rgba(255,204,0,.18)}
+.form-note{color:#777;font-size:12px;line-height:1.5}.terms-row{display:flex;gap:9px;align-items:flex-start;grid-column:1/-1;font-size:13px;color:#555}.terms-row input{margin-top:4px}
+.registration-submit{grid-column:1/-1;width:100%;padding:15px;background:#ffcc00;color:#111;border:0;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}.registration-submit:hover{background:#e6b800}
+.welcome-badge{display:none;background:#222;color:#ffcc00;border:1px solid #333;padding:7px 12px;border-radius:999px;font-size:13px;font-weight:bold;margin-left:15px}
+/* DURASI SEWA KUSTOM */
+.duration-input-wrap{width:260px;max-width:90%;margin:0 auto;display:flex;align-items:center;background:#fff;border:1px solid #ccc;border-radius:10px;overflow:hidden}.duration-input{width:100%;border:0;outline:none;padding:13px 14px;font-size:18px;text-align:center}.duration-unit{padding:0 15px;color:#666;font-weight:bold}.duration-presets{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}.duration-preset{border:1px solid #ddd;background:#fff;border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:bold}.duration-preset:hover{border-color:#ffcc00;background:#fffdf2}.duration-preview{margin-top:12px;font-weight:bold;color:#333}
+
+/* =========================
    DESKRIPSI KENDARAAN
    ========================= */
 .vehicle-description {
@@ -508,7 +523,47 @@ footer {
     text-decoration:none;
     cursor:pointer;
 }
+
+/* =========================
+   HALAMAN TESTIMONI
+   ========================= */
+.testimonial-container{max-width:1100px;margin:40px auto;padding:0 20px 25px}
+.testimonial-intro{max-width:760px;margin:-10px auto 30px;text-align:center;color:#666}
+.testimonial-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:25px 0 35px}
+.testimonial-stat{background:#fff;border-radius:14px;padding:22px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.07)}
+.testimonial-stat strong{display:block;font-size:27px;margin-bottom:3px}
+.testimonial-stat span{color:#666;font-size:14px}
+.testimonial-form-card{background:#fff;border-radius:16px;padding:28px;margin:25px 0 40px;box-shadow:0 5px 18px rgba(0,0,0,.08);border:1px solid #eee}
+.testimonial-form-card h2{margin-bottom:6px}
+.testimonial-form-card>p{color:#666;margin-bottom:15px}
+.testimonial-form{display:grid;gap:15px}
+.testimonial-form label{font-weight:bold;display:block;margin-bottom:7px}
+.testimonial-form textarea{width:100%;min-height:130px;resize:vertical;border:1px solid #ccc;border-radius:10px;padding:13px;font:inherit;outline:none}
+.testimonial-form textarea:focus{border-color:#ffcc00;box-shadow:0 0 0 3px rgba(255,204,0,.15)}
+.star-picker{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.star-pick{border:0;background:transparent;color:#c9c9c9;font-size:37px;line-height:1;cursor:pointer;padding:2px}
+.star-pick.selected,.star-pick:hover{color:#ffb900}
+.rating-hint{color:#777;font-size:13px;margin-left:8px}
+.testimonial-submit{width:100%;border:0;border-radius:10px;background:#ffcc00;color:#111;padding:14px;font-size:16px;font-weight:bold;cursor:pointer}
+.testimonial-submit:hover{background:#e6b800}
+.testimonial-locked,.testimonial-empty{background:#fff;border:1px dashed #ccc;border-radius:14px;text-align:center;color:#666;padding:24px;margin:25px 0 35px}
+.testimonial-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.testimonial-card{background:#fff;border-radius:15px;padding:24px;box-shadow:0 5px 15px rgba(0,0,0,.07);border:1px solid #eee;overflow-wrap:anywhere}
+.testimonial-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}
+.testimonial-person{font-weight:bold;font-size:17px}
+.testimonial-date{font-size:12px;color:#777;margin-top:3px}
+.testimonial-stars{color:#ffb900;font-size:21px;letter-spacing:1px;white-space:nowrap}
+.testimonial-message{margin:14px 0;white-space:pre-wrap;line-height:1.7;color:#444}
+.testimonial-vehicle{font-size:13px;color:#666;border-top:1px solid #eee;padding-top:12px}
+.review-after-rental{display:none;background:#fffdf0;border:1px solid #ffdf70;border-radius:13px;padding:18px;margin-top:20px}
+.review-after-rental h3{margin-bottom:5px}
+.review-after-rental p{color:#555;margin-bottom:12px}
+.review-after-rental button{border:0;border-radius:8px;background:#ffcc00;padding:11px 17px;font-weight:bold;cursor:pointer}
+@media(max-width:700px){.testimonial-stats{grid-template-columns:1fr}.testimonial-list{grid-template-columns:1fr}.testimonial-form-card{padding:22px 18px}.testimonial-card-head{flex-direction:column;gap:4px}.star-pick{font-size:34px}}
+
 @media(max-width:700px) {
+    .registration-card{padding:25px 18px}.registration-form{grid-template-columns:1fr}.form-group.full,.terms-row,.registration-submit{grid-column:1}.welcome-badge{margin-left:8px}
+
     .vehicle-slide { padding:30px 20px; }
     .vehicle-slide-content { grid-template-columns:1fr; gap:20px; }
     .vehicle-info h2 { font-size:28px; }
@@ -542,9 +597,30 @@ footer {
   </style>
  </head>
  <body>
-  <nav class="navbar">
+  <section class="page active registration-page" id="registerPage">
+   <div class="registration-card">
+    <div class="registration-brand">
+     <div class="brand-icon">🚕</div>
+     <h1>Cjek</h1>
+     <p>Buat profil pelanggan untuk memulai perjalanan premium Anda.</p>
+    </div>
+    <form class="registration-form" onsubmit="registerUser(event)">
+     <div class="form-group full"><label for="regName">Nama Lengkap</label><input id="regName" type="text" placeholder="Contoh: Stevent Filbert" autocomplete="name" required></div>
+     <div class="form-group"><label for="regEmail">Email</label><input id="regEmail" type="email" placeholder="nama@email.com" autocomplete="email" required></div>
+     <div class="form-group"><label for="regUsername">Username</label><input id="regUsername" type="text" placeholder="username" minlength="4" maxlength="20" autocomplete="username" required></div>
+     <div class="form-group"><label for="regTitle">Anda ingin dipanggil</label><select id="regTitle" required><option value="">Pilih sapaan</option><option value="Tuan">Tuan</option><option value="Nyonya">Nyonya</option><option value="Nona">Nona</option></select></div>
+     <div class="form-group"><label for="regPhone">Nomor Telepon</label><input id="regPhone" type="tel" placeholder="08xxxxxxxxxx" autocomplete="tel" required></div>
+     <div class="form-group"><label for="regPassword">Kata Sandi</label><input id="regPassword" type="password" placeholder="Minimal 6 karakter" minlength="6" autocomplete="new-password" required></div>
+     <div class="form-group"><label for="regPasswordConfirm">Konfirmasi Kata Sandi</label><input id="regPasswordConfirm" type="password" placeholder="Ulangi kata sandi" minlength="6" autocomplete="new-password" required></div>
+     <label class="terms-row"><input id="regTerms" type="checkbox" required><span>Saya menyetujui penggunaan data pendaftaran untuk kebutuhan akun dan pemesanan Cjek.</span></label>
+     <button class="registration-submit" type="submit">Daftar &amp; Masuk ke Cjek</button>
+    </form>
+   </div>
+  </section>
+  <nav class="navbar" id="mainNavbar" style="display:none;">
    <div class="logo">
     🚕 Cjek
+    <span class="welcome-badge" id="welcomeBadge"></span>
    </div>
    <div>
     <a onclick="showPage('home')">
@@ -556,12 +632,15 @@ footer {
     <a onclick="showPage('vehicles')">
      Kendaraan
     </a>
+    <a onclick="showPage('testimonials')">
+     Testimoni
+    </a>
     <a onclick="showPage('home');setTimeout(()=>document.getElementById('about').scrollIntoView(),50)">
      About Us
     </a>
    </div>
   </nav>
-  <section class="page active" id="home">
+  <section class="page" id="home">
    <section class="hero">
     <div class="hero-content">
      <h1>
@@ -644,15 +723,20 @@ footer {
    </div>
    <div class="duration-box">
     <label for="durasi">⏱️ Mau menyewa berapa lama?</label>
-    <select class="duration-select" id="durasi">
-     <option value="1">1 jam</option>
-     <option value="2">2 jam</option>
-     <option value="4">4 jam</option>
-     <option value="8">8 jam</option>
-     <option value="12">12 jam</option>
-     <option value="24">24 jam</option>
-    </select>  
-    <p class="hour-note">Semua harga taxi di bawah adalah harga per jam. Total otomatis dihitung berdasarkan durasi.</p>
+    <div class="duration-input-wrap">
+     <input class="duration-input" id="durasi" type="number" min="1" max="720" step="1" value="1" inputmode="numeric" aria-label="Durasi sewa dalam jam">
+     <span class="duration-unit">jam</span>
+    </div>
+    <div class="duration-presets">
+     <button type="button" class="duration-preset" onclick="setDurasi(1)">1 jam</button>
+     <button type="button" class="duration-preset" onclick="setDurasi(2)">2 jam</button>
+     <button type="button" class="duration-preset" onclick="setDurasi(4)">4 jam</button>
+     <button type="button" class="duration-preset" onclick="setDurasi(8)">8 jam</button>
+     <button type="button" class="duration-preset" onclick="setDurasi(12)">12 jam</button>
+     <button type="button" class="duration-preset" onclick="setDurasi(24)">24 jam</button>
+    </div>
+    <p class="duration-preview" id="durationPreview">Durasi dipilih: 1 jam</p>
+    <p class="hour-note">Ketik sendiri jumlah jam yang Anda inginkan. Contoh: 15 jam, 30 jam, atau 72 jam. Maksimal 720 jam untuk simulasi.</p>
    </div>
    <section class="taxi-container">
     <div class="taxi-card">
@@ -687,7 +771,7 @@ footer {
      <p class="price">
       Rp2.650.000 / jam
      </p>
-     <button class="call-button" onclick="pesanTaxi('Cjek Standard Plus','Standard Class',2650000)">
+     <button class="call-button" onclick="pesanTaxi('Cjek Standard Plus','Standard Plus Class',2650000)">
       Panggil Taxi
      </button>
     </div>
@@ -740,7 +824,7 @@ footer {
      <p class="price">
       Rp95.000.000 / jam
      </p>
-     <button class="call-button" onclick="pesanTaxi('Cjek First Class','First Class',95000000)">
+     <button class="call-button" onclick="pesanTaxi('Cjek Presidential Class','Presidential Class',95000000)">
       Panggil Taxi
      </button>
     </div>
@@ -1005,7 +1089,6 @@ footer {
       <p><strong>Durasi:</strong> <span id="trackingDuration">-</span></p>
       <div class="driver-card">
        <strong>🤖 AutoDrive</strong>
-       <p>Kendaraan dikendalikan dan dipantau oleh sistem AutoDrive.</p>
       </div>
       <h3 style="margin-top:20px;">📱 Kontrol Mobil</h3>
       <div class="car-controls">
@@ -1020,13 +1103,61 @@ footer {
        <div>🛡️ Sistem keselamatan AutoDrive</div>
        <div>📲 Kontrol kendaraan dari HP</div>
       </div>
-      <p class="simulation-note">Catatan: fitur kontrol dan pergerakan kendaraan pada versi ini adalah simulasi front-end. Integrasi kendaraan/GPS nyata membutuhkan perangkat kendaraan, server, dan API resmi.</p>
+      <button class="car-control" id="finishRentalButton" style="width:100%;margin-top:14px;" onclick="finishRental(true)">✅ Selesaikan Sewa (Simulasi)</button>
+      <div class="review-after-rental" id="reviewAfterRental">
+       <h3>⭐ Perjalanan selesai!</h3>
+       <p>Bagaimana pengalaman Anda menggunakan Cjek? Beri rating bintang dan tulis testimoni Anda.</p>
+       <button type="button" onclick="showPage('testimonials')">Beri Testimoni</button>
+      </div>
       <button class="home-button" style="margin-top:15px;" onclick="showPage('home')">Kembali ke Home</button>
      </section>
     </div>
    </main>
   </section>
-  <footer>
+  <section class="page" id="testimonials">
+   <main class="testimonial-container">
+    <div class="title">
+     <h1>⭐ Testimoni Pelanggan</h1>
+     <p>Pengalaman pelanggan membantu kami memberikan perjalanan yang lebih baik.</p>
+    </div>
+    <p class="testimonial-intro">Pelanggan yang telah menyelesaikan sewa taxi bisa memberikan rating bintang dan menuliskan pengalaman mereka. Ulasan yang dikirim akan tampil di halaman ini.</p>
+
+    <div class="testimonial-stats" id="testimonialStats">
+     <div class="testimonial-stat"><strong id="averageRating">9.9</strong><span>Rata-rata rating</span></div>
+     <div class="testimonial-stat"><strong id="totalReviews">57822</strong><span>Total testimoni</span></div>
+     <div class="testimonial-stat"><strong id="fiveStarReviews">54987</strong><span>Rating bintang 5</span></div>
+    </div>
+
+    <section class="testimonial-form-card" id="testimonialFormCard" style="display:none;">
+     <h2>Bagikan Pengalaman Anda</h2>
+     <form class="testimonial-form" id="testimonialForm" onsubmit="submitTestimonial(event)">
+      <div>
+       <label>Rating Anda</label>
+       <div class="star-picker" role="group" aria-label="Pilih rating bintang">
+        <button class="star-pick" type="button" data-rating="1" aria-label="1 bintang" aria-pressed="false" onclick="setReviewRating(1)">★</button>
+        <button class="star-pick" type="button" data-rating="2" aria-label="2 bintang" aria-pressed="false" onclick="setReviewRating(2)">★</button>
+        <button class="star-pick" type="button" data-rating="3" aria-label="3 bintang" aria-pressed="false" onclick="setReviewRating(3)">★</button>
+        <button class="star-pick" type="button" data-rating="4" aria-label="4 bintang" aria-pressed="false" onclick="setReviewRating(4)">★</button>
+        <button class="star-pick" type="button" data-rating="5" aria-label="5 bintang" aria-pressed="false" onclick="setReviewRating(5)">★</button>
+        <span class="rating-hint" id="ratingHint">Pilih 1–5 bintang</span>
+       </div>
+      </div>
+      <div>
+       <label for="reviewMessage">Testimoni Anda</label>
+       <textarea id="reviewMessage" maxlength="500" placeholder="Ceritakan pengalaman Anda selama menggunakan layanan Cjek (maksimal 500 karakter)..." required></textarea>
+      </div>
+      <button class="testimonial-submit" type="submit">Kirim Testimoni</button>
+     </form>
+    </section>
+
+    <div class="title" style="margin-top:35px;">
+     <h2>Ulasan Pelanggan</h2>
+     <p id="reviewCountLabel">50k+ Testimoni</p>
+    </div>
+    <div class="testimonial-list" id="testimonialList"></div>
+   </main>
+  </section>
+  <footer id="siteFooter" style="display:none;">
    <p>
     © 2026 Cjek. All Rights Reserved.
    </p>
@@ -1043,6 +1174,77 @@ footer {
    let doorOpen = false;
    let acOn = false;
    let musicOn = false;
+   let reviewRating = 0;
+   let rentalEndTime = null;
+
+function registerUser(event) {
+    event.preventDefault();
+    const name = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const username = document.getElementById('regUsername').value.trim();
+    const title = document.getElementById('regTitle').value;
+    const phone = document.getElementById('regPhone').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const passwordConfirm = document.getElementById('regPasswordConfirm').value;
+    const terms = document.getElementById('regTerms').checked;
+
+    if (!name || !email || !username || !title || !phone || !password || !passwordConfirm) { alert('Mohon lengkapi semua data pendaftaran.'); return; }
+    if (!/^[A-Za-z0-9._-]{4,20}$/.test(username)) { alert('Username hanya boleh berisi huruf, angka, titik, garis bawah, atau tanda minus (4–20 karakter).'); return; }
+    if (!/^[0-9+()\-\s]{8,20}$/.test(phone)) { alert('Silakan masukkan nomor telepon yang valid.'); return; }
+    if (password.length < 6) { alert('Kata sandi minimal 6 karakter.'); return; }
+    if (password !== passwordConfirm) { alert('Konfirmasi kata sandi tidak sama.'); return; }
+    if (!terms) { alert('Silakan setujui penggunaan data terlebih dahulu.'); return; }
+
+    const user = {name,email,username,title,phone};
+    localStorage.setItem('cjekUser', JSON.stringify(user));
+    const registerPage = document.getElementById('registerPage');
+    if (registerPage) registerPage.classList.remove('active');
+    applyRegisteredUser(user);
+    showPage('home');
+    alert(`Selamat datang, ${title} ${name}! Akun Cjek Anda berhasil dibuat.`);
+}
+
+function applyRegisteredUser(user) {
+    const navbar = document.getElementById('mainNavbar');
+    const footer = document.getElementById('siteFooter');
+    const badge = document.getElementById('welcomeBadge');
+    if (navbar) navbar.style.display = 'flex';
+    if (footer) footer.style.display = 'block';
+    if (badge) { badge.textContent = `Halo, ${user.title} ${user.name}`; badge.style.display = 'inline-block'; }
+}
+
+function checkRegistration() {
+    try {
+        const saved = localStorage.getItem('cjekUser');
+        if (saved) {
+            const user = JSON.parse(saved);
+            if (user && user.name && user.title) {
+                const registerPage = document.getElementById('registerPage');
+                if (registerPage) registerPage.classList.remove('active');
+                applyRegisteredUser(user);
+                showPage('home');
+            }
+        }
+    } catch (error) { localStorage.removeItem('cjekUser'); }
+}
+
+function setDurasi(jam) {
+    const input = document.getElementById('durasi');
+    if (!input) return;
+    input.value = jam;
+    updateDurationPreview();
+}
+
+function updateDurationPreview() {
+    const input = document.getElementById('durasi');
+    const preview = document.getElementById('durationPreview');
+    if (!input || !preview) return;
+    let value = Number(input.value);
+    if (!Number.isFinite(value) || value < 1) value = 1;
+    value = Math.floor(value);
+    input.value = value;
+    preview.textContent = `Durasi dipilih: ${value} jam`;
+}
 
 function formatRupiah(value) {
     return new Intl.NumberFormat('id-ID', {
@@ -1071,10 +1273,21 @@ function showPage(page) {
              restartVehicleAutoSlide();
          }, 50);
      }
+
+     if (page === 'testimonials') {
+         renderTestimonials();
+     }
  }
 function pesanTaxi(nama, kelas, hargaPerJam) {
     const lokasi = document.getElementById('lokasi').value.trim();
-    const durasi = Number(document.getElementById('durasi').value);
+    const durasiInput = document.getElementById('durasi');
+    const durasi = Number(durasiInput.value);
+
+    if (!Number.isInteger(durasi) || durasi < 1 || durasi > 720) {
+        alert('Durasi sewa harus berupa angka bulat antara 1 sampai 720 jam. Contoh: 15 jam.');
+        durasiInput.focus();
+        return;
+    }
 
     if (!lokasi) {
         alert('Silakan masukkan lokasi penjemputan terlebih dahulu.');
@@ -1084,13 +1297,19 @@ function pesanTaxi(nama, kelas, hargaPerJam) {
 
     const total = hargaPerJam * durasi;
 
+    const savedUser = JSON.parse(localStorage.getItem('cjekUser') || 'null');
     order = {
+        id: `CJ-${Date.now()}`,
         nama,
         kelas,
         hargaPerJam,
         durasi,
         total,
-        lokasi
+        lokasi,
+        customerUsername: savedUser?.username || '',
+        customerName: savedUser?.name || '',
+        customerTitle: savedUser?.title || '',
+        status: 'booked'
     };
 
     document.getElementById('nama').textContent = nama;
@@ -1126,18 +1345,31 @@ function prosesPembayaran() {
 }
 
 function startRental() {
+    if (!order.id) {
+        order.id = `CJ-${Date.now()}`;
+    }
+    order.status = 'active';
+    order.startAt = Date.now();
+    order.endAt = order.startAt + order.durasi * 60 * 60 * 1000;
+    rentalEndTime = order.endAt;
+    localStorage.setItem('cjekActiveRental', JSON.stringify(order));
+
     document.getElementById('trackingTaxi').textContent = order.nama;
     document.getElementById('trackingLocation').textContent = order.lokasi;
     document.getElementById('trackingDuration').textContent = `${order.durasi} jam`;
-    startCountdown(order.durasi * 60 * 60);
+    document.getElementById('carStatus').textContent = 'Kendaraan dalam perjalanan';
+    document.getElementById('finishRentalButton').style.display = 'block';
+    document.getElementById('reviewAfterRental').style.display = 'none';
+    startCountdown(order.durasi * 60 * 60, order.endAt);
     showPage('tracking');
 }
 
-function startCountdown(totalSeconds) {
+function startCountdown(totalSeconds, endAt = null) {
     clearInterval(countdownTimer);
-    let remaining = totalSeconds;
+    rentalEndTime = endAt || (Date.now() + totalSeconds * 1000);
 
     function update() {
+        const remaining = Math.max(0, Math.ceil((rentalEndTime - Date.now()) / 1000));
         const h = Math.floor(remaining / 3600);
         const m = Math.floor((remaining % 3600) / 60);
         const s = remaining % 60;
@@ -1146,15 +1378,236 @@ function startCountdown(totalSeconds) {
 
         if (remaining <= 0) {
             clearInterval(countdownTimer);
-            document.getElementById('carStatus').textContent = 'Masa sewa selesai';
-            document.getElementById('trackingText').textContent = 'Waktu sewa kendaraan telah berakhir.';
+            finishRental(false);
             return;
         }
-        remaining--;
     }
 
     update();
     countdownTimer = setInterval(update, 1000);
+}
+
+function finishRental(isManual = false) {
+    if (!order.id) {
+        try { order = JSON.parse(localStorage.getItem('cjekActiveRental') || '{}'); }
+        catch (error) { order = {}; }
+    }
+    if (!order.id) {
+        alert('Tidak ada sewa aktif yang dapat diselesaikan.');
+        return;
+    }
+    if (order.status === 'completed') {
+        document.getElementById('reviewAfterRental').style.display = 'block';
+        return;
+    }
+
+    clearInterval(countdownTimer);
+    clearInterval(trackingTimer);
+    order.status = 'completed';
+    order.completedAt = Date.now();
+    localStorage.setItem('cjekActiveRental', JSON.stringify(order));
+
+    let completedRentals = [];
+    try { completedRentals = JSON.parse(localStorage.getItem('cjekCompletedRentals') || '[]'); }
+    catch (error) { completedRentals = []; }
+    if (!completedRentals.some(item => item.id === order.id)) {
+        completedRentals.push({ ...order, reviewSubmitted: false });
+    }
+    localStorage.setItem('cjekCompletedRentals', JSON.stringify(completedRentals));
+
+    document.getElementById('countdown').textContent = '00:00:00';
+    document.getElementById('carStatus').textContent = 'Masa sewa selesai';
+    document.getElementById('trackingText').textContent = 'Waktu sewa kendaraan telah berakhir. Anda sekarang dapat memberi testimoni.';
+    document.getElementById('finishRentalButton').style.display = 'none';
+    document.getElementById('reviewAfterRental').style.display = 'block';
+    renderTestimonials();
+
+    if (isManual) {
+        alert('Sewa simulasi telah diselesaikan. Sekarang Anda dapat memberikan testimoni.');
+    }
+}
+
+function getSavedReviews() {
+    try {
+        const saved = JSON.parse(localStorage.getItem('cjekTestimonials') || '[]');
+        return Array.isArray(saved) ? saved : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function getCompletedRentals() {
+    try {
+        const saved = JSON.parse(localStorage.getItem('cjekCompletedRentals') || '[]');
+        return Array.isArray(saved) ? saved : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function getEligibleRental() {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem('cjekUser') || 'null'); }
+    catch (error) { user = null; }
+    if (!user || !user.username) return null;
+
+    const reviews = getSavedReviews();
+    return getCompletedRentals().slice().reverse().find((rental) =>
+        rental && rental.status === 'completed' && !rental.reviewSubmitted &&
+        rental.customerUsername === user.username &&
+        !reviews.some((review) => review.rentalId === rental.id)
+    ) || null;
+}
+
+function setReviewRating(rating) {
+    reviewRating = Math.max(1, Math.min(5, Number(rating) || 0));
+    document.querySelectorAll('.star-pick').forEach((button) => {
+        const selected = Number(button.dataset.rating) <= reviewRating;
+        button.classList.toggle('selected', selected);
+        button.setAttribute('aria-pressed', String(Number(button.dataset.rating) === reviewRating));
+    });
+    const words = ['', 'Sangat buruk', 'Kurang memuaskan', 'Cukup baik', 'Memuaskan', 'Sangat memuaskan'];
+    document.getElementById('ratingHint').textContent = `${reviewRating}/5 — ${words[reviewRating]}`;
+}
+
+function renderTestimonials() {
+    const list = document.getElementById('testimonialList');
+    if (!list) return;
+
+    const reviews = getSavedReviews().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    const averageEl = document.getElementById('averageRating');
+    const totalEl = document.getElementById('totalReviews');
+    const fiveStarEl = document.getElementById('fiveStarReviews');
+    const countLabel = document.getElementById('reviewCountLabel');
+    const empty = document.getElementById('testimonialEmpty');
+    const formCard = document.getElementById('testimonialFormCard');
+    const locked = document.getElementById('testimonialLocked');
+    const eligible = getEligibleRental();
+
+    const average = reviews.length ? reviews.reduce((sum, review) => sum + Number(review.rating || 0), 0) / reviews.length : 0;
+    averageEl.textContent = reviews.length ? `${average.toFixed(1)} ★` : '—';
+    totalEl.textContent = String(reviews.length);
+    fiveStarEl.textContent = String(reviews.filter((review) => Number(review.rating) === 5).length);
+    countLabel.textContent = reviews.length ? `${reviews.length} testimoni telah dibagikan.` : 'Belum ada testimoni.';
+
+    if (eligible) {
+        formCard.style.display = 'block';
+        locked.style.display = 'none';
+        document.getElementById('eligibleRentalText').textContent = `Ulasan untuk ${eligible.nama} (${eligible.kelas}), durasi sewa ${eligible.durasi} jam.`;
+    } else {
+        formCard.style.display = 'none';
+        locked.style.display = 'block';
+    }
+
+    list.replaceChildren();
+    empty.style.display = reviews.length ? 'none' : 'block';
+
+    reviews.forEach((review) => {
+        const card = document.createElement('article');
+        card.className = 'testimonial-card';
+
+        const head = document.createElement('div');
+        head.className = 'testimonial-card-head';
+        const personWrap = document.createElement('div');
+        const person = document.createElement('div');
+        person.className = 'testimonial-person';
+        person.textContent = `${review.customerTitle ? review.customerTitle + ' ' : ''}${review.customerName || 'Pelanggan Cjek'}`;
+        const date = document.createElement('div');
+        date.className = 'testimonial-date';
+        date.textContent = review.date || '';
+        personWrap.append(person, date);
+
+        const stars = document.createElement('div');
+        stars.className = 'testimonial-stars';
+        stars.setAttribute('aria-label', `${review.rating} dari 5 bintang`);
+        stars.textContent = '★'.repeat(Math.max(0, Math.min(5, Number(review.rating) || 0))) + '☆'.repeat(5 - Math.max(0, Math.min(5, Number(review.rating) || 0)));
+        head.append(personWrap, stars);
+
+        const message = document.createElement('p');
+        message.className = 'testimonial-message';
+        message.textContent = review.message || '';
+
+        const vehicle = document.createElement('div');
+        vehicle.className = 'testimonial-vehicle';
+        vehicle.textContent = `${review.nama || 'Taxi Cjek'} • ${review.kelas || 'Kelas kendaraan'}`;
+        card.append(head, message, vehicle);
+        list.appendChild(card);
+    });
+}
+
+function submitTestimonial(event) {
+    event.preventDefault();
+    const eligible = getEligibleRental();
+    if (!eligible) {
+        alert('Testimoni hanya bisa dikirim setelah sewa taxi selesai.');
+        renderTestimonials();
+        return;
+    }
+    if (!reviewRating) {
+        alert('Silakan pilih rating bintang terlebih dahulu.');
+        return;
+    }
+
+    const message = document.getElementById('reviewMessage').value.trim();
+    if (message.length < 5) {
+        alert('Testimoni minimal 5 karakter agar pengalaman Anda lebih jelas.');
+        document.getElementById('reviewMessage').focus();
+        return;
+    }
+
+    let user = {};
+    try { user = JSON.parse(localStorage.getItem('cjekUser') || '{}'); }
+    catch (error) { user = {}; }
+
+    const reviews = getSavedReviews();
+    if (reviews.some((review) => review.rentalId === eligible.id)) {
+        alert('Sewa ini sudah memiliki testimoni. Terima kasih!');
+        renderTestimonials();
+        return;
+    }
+
+    reviews.push({
+        id: `REV-${Date.now()}`,
+        rentalId: eligible.id,
+        customerUsername: user.username || '',
+        customerName: user.name || eligible.customerName || 'Pelanggan Cjek',
+        customerTitle: user.title || eligible.customerTitle || '',
+        rating: reviewRating,
+        message,
+        nama: eligible.nama,
+        kelas: eligible.kelas,
+        createdAt: Date.now(),
+        date: new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium' }).format(new Date())
+    });
+    localStorage.setItem('cjekTestimonials', JSON.stringify(reviews));
+
+    const completed = getCompletedRentals().map((rental) =>
+        rental.id === eligible.id ? { ...rental, reviewSubmitted: true } : rental
+    );
+    localStorage.setItem('cjekCompletedRentals', JSON.stringify(completed));
+
+    document.getElementById('testimonialForm').reset();
+    reviewRating = 0;
+    document.querySelectorAll('.star-pick').forEach((button) => {
+        button.classList.remove('selected');
+        button.setAttribute('aria-pressed', 'false');
+    });
+    document.getElementById('ratingHint').textContent = 'Pilih 1–5 bintang';
+    renderTestimonials();
+    alert('Terima kasih! Testimoni Anda berhasil ditampilkan di halaman Testimoni.');
+}
+
+function restoreRentalStatus() {
+    try {
+        const active = JSON.parse(localStorage.getItem('cjekActiveRental') || 'null');
+        if (!active || !active.id) return;
+        order = active;
+        if (active.status === 'active' && Number(active.endAt) <= Date.now()) {
+            finishRental(false);
+        }
+    } catch (error) {
+        console.warn('Status sewa tersimpan tidak dapat dibaca.', error);
+    }
 }
 
 function initTrackingMap() {
@@ -1309,6 +1762,11 @@ function flashLights() {
 
   
 initVehicleSlider();
+   const durationInput = document.getElementById('durasi');
+   if (durationInput) durationInput.addEventListener('input', updateDurationPreview);
+   checkRegistration();
+   restoreRentalStatus();
+   updateDurationPreview();
 </script>
  </body>
-</html>
+</html> 
